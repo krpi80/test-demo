@@ -9,7 +9,8 @@ http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/cor
     </spring:beans>
     <munit:test name="test-demo-test-suite-test-demoFlowTest" description="Test">
         <munit:set payload="#[getResource('trade.json').asString()]" doc:name="Set Message"/>
-        <flow-ref name="test-demoFlow" doc:name="Flow-ref to test-demoFlow"/>
-        <munit:assert-on-equals expectedValue="ABCD" actualValue="#[json:traderBook]" doc:name="Assert Equals"/>
+        <flow-ref name="test-demoFlow" doc:name="test-demoFlow"/>
+        <munit:assert-on-equals expectedValue="ABCD" actualValue="#[json:traderBook]" doc:name="Assert Equals traderBook"/>
+        <munit:assert-on-equals expectedValue="John Smith" actualValue="#[json:trader]" doc:name="Assert Equals trader"/>
     </munit:test>
 </mule>
