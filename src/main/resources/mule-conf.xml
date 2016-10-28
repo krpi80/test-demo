@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mule xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns="http://www.mulesoft.org/schema/mule/core"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:spring="http://www.springframework.org/schema/beans"
+  xmlns:vm="http://www.mulesoft.org/schema/mule/vm"
+  xmlns:test="http://www.mulesoft.org/schema/mule/test"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/vm http://www.mulesoft.org/schema/mule/vm/current/mule-vm.xsd
+http://www.mulesoft.org/schema/mule/test http://www.mulesoft.org/schema/mule/test/current/mule-test.xsd">
+    <spring:beans>
+        <spring:bean id="FTC" name="FTC" class="org.mule.tck.functional.FunctionalTestComponent"/>
+    </spring:beans>
+  
+	<flow name="TestComponentFlow">
+	  <inbound-endpoint address="vm://test" exchange-pattern="request-response" doc:name="Generic"/>
+	  <test:component appendString=" Received"/>
+	</flow>
+	
+	
+	
+	<flow name="TestComponentFlow2">
+	    <inbound-endpoint address="vm://test2" exchange-pattern="request-response" doc:name="Generic"/> 
+	    <component doc:name="Java">
+	        <spring-object bean="FTC" />
+	   </component>
+	</flow>
+
+</mule>
