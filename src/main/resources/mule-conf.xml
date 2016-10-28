@@ -10,6 +10,7 @@ http://www.mulesoft.org/schema/mule/vm http://www.mulesoft.org/schema/mule/vm/cu
 http://www.mulesoft.org/schema/mule/test http://www.mulesoft.org/schema/mule/test/current/mule-test.xsd">
     <spring:beans>
         <spring:bean id="FTC" name="FTC" class="org.mule.tck.functional.FunctionalTestComponent"/>
+		<spring:alias name="FTC" alias="FTC2" />
     </spring:beans>
   
 	<flow name="TestComponentFlow">
@@ -18,11 +19,10 @@ http://www.mulesoft.org/schema/mule/test http://www.mulesoft.org/schema/mule/tes
 	</flow>
 	
 	
-	
 	<flow name="TestComponentFlow2">
 	    <inbound-endpoint address="vm://test2" exchange-pattern="request-response" doc:name="Generic"/> 
 	    <component doc:name="Java">
-	        <spring-object bean="FTC" />
+	        <spring-object bean="FTC2" />
 	   </component>
 	</flow>
 
